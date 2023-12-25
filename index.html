@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main class="gridContainer">
+        <div class="leftGrid">
+
+            <div class="startBox ">
+                <h3>Chose an username</h3>
+                <form action="">                    
+                    <input class="inputUsername" type="text">
+                </form>
+                <button class="startBtn">Start</button>
+            </div>
+    
+            <div class="startGameBox hidden">
+                <button class="startGameBtn">Start Game</button>
+            </div>
+    
+            <div class="gameBox hidden">
+                <button class="clickCounterBtn">Click Here</button>
+            </div>
+    
+            <div class="resultsBox hidden">
+                <h3>Your Score</h3>
+                <p>Time over</p>
+                <p class="bold resultText"></p>
+                <button class="playAgainBtn">Play Again</button>
+            </div>
+
+        </div>
+
+        <div class="rightGrid userScoresBox">
+            <h3>User Scores</h3>
+            
+            
+        </div>
+
+        
+
+    </main>
+    
+</body>
+<script src="script.js"></script>
+</html>

@@ -2,42 +2,43 @@
 let users = [
     {
         username: 'Juan',
-        score: '10 clicks'
+        score: '1 second'
     },
     {
         username: 'Maria',
-        score: '40 clicks'
+        score: '40 seconds'
     },
     {
         username: 'Pedro',
-        score: '103 clicks'
+        score: '1.4 seconds'
     },
     {
         username: 'Anna',
-        score: '1033 clicks'
+        score: '0.5 seconds'
     },
     {
         username: 'Lidia',
-        score: '12033 clicks'
+        score: '0.1 seconds'
     },
 ]
 
-let clickCounter = 0
+
 
 let playingUser = {
     username: '',
     score: ''
 }
 
-
+let initialTime
 
 let startBtn = document.querySelector('.startBtn')
 let startGameBtn = document.querySelector('.startGameBtn')
-let clickCounterBtn = document.querySelector('.clickCounterBtn')
+let stopBtn = document.querySelector('.stopBtn')
 let playAgainBtn = document.querySelector('.playAgainBtn')
 
 let startBox = document.querySelector('.startBox')
 let startGameBox = document.querySelector('.startGameBox')
+let preGameBox = document.querySelector('.preGameBox')
 let gameBox = document.querySelector('.gameBox')
 let resultsBox = document.querySelector('.resultsBox')
 let userScoresBox = document.querySelector('.userScoresBox')
@@ -80,29 +81,26 @@ let startBtnClick = () => {
 let startGameBtnClick = () => {
     startGameBtn.removeEventListener('click', startBtnClick)
     startGameBox.classList.add('hidden')
-    gameBox.classList.remove('hidden')
+    preGameBox.classList.remove('hidden')
     setTimeout(() => {
-        gameBox.classList.add('hidden')
-        resultsBox.classList.remove('hidden')
-        clickCounterBtn.removeEventListener('click', clickCounterBtnClick)
-        playingUser.score = clickCounter++ + ' clicks'
-        users.push(playingUser)
-        printUsersResults()
-        document.querySelector('.resultText').textContent = playingUser.score
+        preGameBox.classList.add('hidden')
+        gameBox.classList.remove('hidden')
+        initialTime = new Date().getTime()
     },
-    100000)
+    1500)
 }
-let clickCounterBtnClick = () => {
-    clickCounter++
-    let newXposition = Math.round(Math.random()*window.innerWidth)*0.65
-    let newYposition = Math.round(Math.random()*window.innerHeight)*0.9
-    clickCounterBtn.style.position = "absolute"
-    clickCounterBtn.style.top = newYposition + 'px'
-    clickCounterBtn.style.left = newXposition + 'px'
-    let newWidth = Math.floor(Math.random()*700)
-    let newHeight = Math.floor(Math.random()*700)
-    clickCounterBtn.style.width = newWidth + 'px'
-    clickCounterBtn.style.height = newHeight + 'px'
+let stopBtnClick = () => {
+    let finishTime = new Date().getTime()
+    let reactionTime = (finishTime - initialTime) / 1000
+    
+    playingUser.score = reactionTime + ' seconds'
+    document.querySelector('.resultText').textContent = playingUser.score
+    users.push(playingUser)
+    printUsersResults()
+    gameBox.classList.add('hidden')
+    resultsBox.classList.remove('hidden')
+
+    
 
 }
 let playAgainBtnClick = () => {
@@ -114,7 +112,7 @@ document.addEventListener('DOMContentLoaded',() => {
     printUsersResults()
     startBtn.addEventListener('click', startBtnClick)
     startGameBtn.addEventListener('click', startGameBtnClick)
-    clickCounterBtn.addEventListener('click', clickCounterBtnClick)
+    stopBtn.addEventListener('click', stopBtnClick)
     playAgainBtn.addEventListener('click', playAgainBtnClick)
 })
 

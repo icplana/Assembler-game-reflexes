@@ -58,13 +58,15 @@
     cursor:pointer;
 }
 
+.preGameBox { text-align: center;}
+
 .gameBox{
     display: flex;
     justify-content: center;
     margin: 1rem;
 }
 
-.clickCounterBtn{
+.stopBtn{
     border: none;
     background-color: black;
     color:white;
